@@ -1,7 +1,7 @@
 <h1>Android, Go, Gorilla Mux, GORM, PostgreSQL Integration Example</h1>
 
 <div>
-<img src="./resources/gopher.jpg" height="360pt" width="800pt"/>
+<img src="./resources/gopher.jpg" height="360pt" width="700pt"/>
 </div>
 
 
