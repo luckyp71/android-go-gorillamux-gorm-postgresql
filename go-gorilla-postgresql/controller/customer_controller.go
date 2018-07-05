@@ -27,7 +27,7 @@ func main() {
 	db.AutoMigrate(m.Customer{})
 
 	router := mux.NewRouter()
-	router.HandleFunc("/customers/", getCustomers).Methods("GET")
+	router.HandleFunc("/customers", getCustomers).Methods("GET")
 	router.HandleFunc("/customers/{name}/list", getCustomersByName).Methods("GET")
 	router.HandleFunc("/customers/{id}", getCustomerByID).Methods("GET")
 	router.HandleFunc("/customers", insertCustomer).Methods("POST")
