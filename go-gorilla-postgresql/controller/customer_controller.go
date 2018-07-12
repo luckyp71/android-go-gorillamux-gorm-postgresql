@@ -7,6 +7,7 @@ import (
 
 	m "go-gorilla-postgresql/model"
 
+	"github.com/gorilla/handlers"
 	"github.com/gorilla/mux"
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/postgres"
@@ -33,7 +34,10 @@ func main() {
 	router.HandleFunc("/customers", insertCustomer).Methods("POST")
 	router.HandleFunc("/customers/{id}", updateCustomerByID).Methods("PUT")
 	router.HandleFunc("/customers/{id}", deleteCustomer).Methods("DELETE")
-	http.ListenAndServe(":8090", router)
+	headersOk := handlers.AllowedHeaders([]string{"Authorization"})
+	originsOk := handlers.AllowedOrigins([]string{"*"})
+	methodsOk := handlers.AllowedMethods([]string{"GET", "POST", "PUT", "DELETE", "OPTIONS"})
+	http.ListenAndServe(":8090", handlers.CORS(originsOk, headersOk, methodsOk)(router))
 }
 
 // Get customers
@@ -46,6 +50,8 @@ func getCustomers(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "application/json")
 		w.Header().Set("Response-Code", "00")
 		w.Header().Set("Response-Desc", "Success")
+		fmt.Println("Retrieving customer list")
+
 		json.NewEncoder(w).Encode(&customers)
 	}
 }

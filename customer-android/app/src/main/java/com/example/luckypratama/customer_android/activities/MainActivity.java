@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.widget.Button;
 import android.view.View;
 import android.widget.Toast;
+import android.support.design.widget.FloatingActionButton;
 
 import com.example.luckypratama.customer_android.R;
 import com.example.luckypratama.customer_android.adapters.CustomerAdapter;
@@ -82,8 +83,9 @@ public class MainActivity extends AppCompatActivity {
 
     // Insert customer
     public void goInsert(View view){
-        Button btnAdd = findViewById(R.id.btnAdd);
-        btnAdd.setOnClickListener(new View.OnClickListener(){
+//        Button btnAdd = findViewById(R.id.btnAdd);
+        FloatingActionButton fabAdd = findViewById(R.id.btnAdd);
+        fabAdd.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
                 Intent intent = new Intent(getBaseContext(), InsertActivity.class);
